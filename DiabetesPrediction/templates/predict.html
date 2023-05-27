@@ -11,8 +11,8 @@
         background-size: cover;
         }
         .main{
-        position:fixed;
-       margin-top:50px;
+
+       margin-top:-30px;
         margin-left:450px;
         width:550px;
         background-color:#ffffff;
@@ -20,7 +20,16 @@
         align-items:center;
         padding:5%;
         }
-
+.main1{
+        position:fixed;
+       margin-top:1000px;
+        margin-left:450px;
+        width:550px;
+        background-color:#ffffff;
+        border-radius: 10px;
+        align-items:center;
+        padding:5%;
+        }
         h1{
         color:#0086b3;
         font-size:30px;
@@ -76,7 +85,7 @@
             <td align="right"> Insulin:</td>
             <td align="left"><input type="text" required name="n5"
                                     placeholder="insert Insulin 0-846"
-                                    pattern="^(\d{1,2}(?:\.\d+)?|8[0-3]\d(?:\.\d+)?|84[0-5](?:\.\d+)?|846(?:\.0+)?)$"></td>
+                                    pattern="^(\d{1,2}|[1-7]\d{2}|8[0-3]\d|846)(\.\d{1,2})?$"></td>
         </tr>
         <tr>
             <td align="right"> BMI:</td>
@@ -98,7 +107,74 @@
 </form>
 
     Result:<b>{{result2}}</b><br>
-    Message:<b>{{result3}}</b>
+    Message:<b>{{result3}}</b><br>
+    <br><br>
+
+<button type="button" class="btn btn-info" onclick="showAccuracy()">
+    Show Accuracy
+</button>
+    <button type="button" class="btn btn-info" onclick="correlation()">
+    Show Accuracy Comparison
+</button>
+
+
+<table id="accuracyTable" style="display: none;">
+    <tr>
+        <th>Accuracy:</th>
+        <td><b>{{accuracy}}%</b></td>
+    </tr>
+</table>
+
+
+<table id="correlationTable" style="display: none;">
+    <tr> <th>Accuracy Graph:</th></tr>
+    <tr>
+        <td>  <img src="data:image/png;base64,{{ uri3 }}" alt="Accuracy Comparison Plot"></td>
+    </tr>
+</table>
+
+
+
+    <table id="Comparison" style="display: none;">
+    <tr> <th>Confusion Matrix of Logistic And Linear Regression :</th></tr>
+<tr>
+  <td>  <img src="data:image/png;base64,{{ uri2 }}" alt="Logistic and Linear Regression Confusion Matrix"></td>
+</tr>
+</table>
+
+<script>
+function showAccuracy() {
+    const table = document.getElementById("accuracyTable");
+    if (table.style.display === "none") {
+        table.style.display = "table";
+    } else {
+        table.style.display = "none";
+    }
+}
+
+function correlation() {
+    const table = document.getElementById("correlationTable");
+    if (table.style.display === "none") {
+        table.style.display = "table";
+    } else {
+        table.style.display = "none";
+    }
+}
+
+
+function graph() {
+    const table = document.getElementById("Comparison");
+    if (table.style.display === "none") {
+        table.style.display = "table";
+    } else {
+        table.style.display = "none";
+    }
+}
+</script>
+
 </div>
+
+
+
 </body>
 </html>

@@ -1,6 +1,8 @@
 import numpy as np
 
+
 class LogisticRegression:
+
     def __init__(self, lr=0.01, num_iter=100000, fit_intercept=True, verbose=False):
         self.lr = lr
         self.num_iter = num_iter
@@ -42,15 +44,5 @@ class LogisticRegression:
 
         return self.__sigmoid(np.dot(X, self.theta))
 
-    def predict(self, X, threshold=0.2):
-
-        if(self.predict_prob(X) >= 0.2 and self.predict_prob(X) <= 0.5):
-            return 0.2
-
-        if(self.predict_prob(X) >= 0.5 and self.predict_prob(X) <= 0.8):
-            return 0.5
-
-        if(self.predict_prob(X) >= 0.8):
-            return 0.8
-        else:
-            return 0
+    def predict(self, X, threshold=0.5):
+        return self.predict_prob(X) >= threshold

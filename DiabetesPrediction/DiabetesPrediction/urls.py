@@ -21,6 +21,7 @@ urlpatterns = [
     path("", views.home),
     path("predict/", views.predict),
     path("predict/result", views.result),
+    path("", views.index, name='index'),
 
 
 
