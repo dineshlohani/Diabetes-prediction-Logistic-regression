@@ -2,129 +2,233 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Diabetes Prediction System using advanced machine learning algorithms for accurate health predictions.">
-  <meta name="keywords" content="Diabetes, Health Prediction, Machine Learning, AI, Healthcare">
-  <meta name="author" content="Dinesh Lohani">
-  <meta property="og:title" content="Diabetes Prediction System">
-  <meta property="og:description" content="Predict diabetes levels and get healthcare recommendations.">
-  <meta property="og:image" content="{% static 'DiabetesPrediction/images/diabetes.png' %}">
-  <meta property="og:url" content="http://www.yourwebsite.com">
-  <meta property="og:type" content="website">
-  <meta name="twitter:title" content="Diabetes Prediction System">
-  <meta name="twitter:description" content="Predict diabetes levels and get healthcare recommendations.">
-  <meta name="twitter:image" content="{% static 'DiabetesPrediction/images/diabetes.png' %}">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="{% static 'DiabetesPrediction/images/diabetes.png' %}" type="image/png">
-  <title>Diabetes Prediction</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Diabetes Prediction System using advanced machine learning algorithms for accurate health predictions."
+    />
+    <meta
+      name="keywords"
+      content="Diabetes, Health Prediction, Machine Learning, AI, Healthcare"
+    />
+    <meta name="author" content="Dinesh Lohani" />
+    <meta property="og:title" content="Diabetes Prediction System" />
+    <meta
+      property="og:description"
+      content="Predict diabetes levels and get healthcare recommendations."
+    />
+    <meta
+      property="og:image"
+      content="{% static 'DiabetesPrediction/images/diabetes.png' %}"
+    />
+    <meta property="og:url" content="http://www.yourwebsite.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:title" content="Diabetes Prediction System" />
+    <meta
+      name="twitter:description"
+      content="Predict diabetes levels and get healthcare recommendations."
+    />
+    <meta
+      name="twitter:image"
+      content="{% static 'DiabetesPrediction/images/diabetes.png' %}"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="{% static 'DiabetesPrediction/images/diabetes.png' %}"
+      type="image/png"
+    />
+    <title>Diabetes Prediction</title>
     <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        background-color: transparent;
+        color: white;
+      }
+      .card {
+        background-color: rgba(133, 134, 134, 0.7);
+        margin-bottom: 10px;
+      }
+      .card-header {
+        background-color: rgba(119, 159, 239, 0.8);
+      }
+      .btn-link {
+        color: white;
+        text-decoration: none;
+      }
+      .btn-link:hover {
+        color: #4dc3ff;
+      }
+      .card-body {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              About Diabetes Prediction System
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseOne"
+          class="collapse show"
+          aria-labelledby="headingOne"
+          data-parent="#accordionExample"
+        >
+          <div class="card-body">
+            <p>
+              Diabetes is a chronic disease that affects millions of people
+              worldwide. Early detection and management of the disease is
+              crucial to prevent complications and improve health outcomes. This
+              web application uses machine learning algorithms to predict the
+              likelihood of an individual developing diabetes based on certain
+              risk factors.
+            </p>
+          </div>
+        </div>
+      </div>
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              How does it work?
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseTwo"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordionExample"
+        >
+          <div class="card-body">
+            <p>
+              The prediction algorithm used by this application is based on a
+              dataset of individuals who have been diagnosed with diabetes, as
+              well as a set of healthy individuals. The algorithm analyzes
+              several risk factors, including age, body mass index (BMI), blood
+              pressure, and glucose levels, to predict the likelihood of
+              diabetes.
+            </p>
+          </div>
+        </div>
+      </div>
 
-<!-- Bootstrap JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<style type = text/css>
-    div{
-    color:black;
-   }
-   </style>
-    
-</head>
-<body>
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            About Diabetes Prediction System
-        </button>
-      </h5>
-    </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              How accurate is the prediction?
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseThree"
+          class="collapse"
+          aria-labelledby="headingThree"
+          data-parent="#accordionExample"
+        >
+          <div class="card-body">
+            <p>
+              The accuracy of the diabetes prediction algorithm depends on the
+              quality of the data used to train it, as well as the specific risk
+              factors analyzed. In general, the accuracy of the prediction
+              increases as more relevant risk factors are included in the
+              analysis. However, it is important to note that no prediction
+              algorithm is perfect, and there is always some level of
+              uncertainty associated with the results.
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-       <p> Diabetes is a chronic disease that affects millions of people worldwide. Early detection and management
-          of the disease is crucial to prevent complications and improve health outcomes. This web application uses
-          machine learning algorithms to predict the likelihood of an individual developing diabetes based on certain risk factors.
-       </p>
+      <div class="card">
+        <div class="card-header" id="headingFour">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
+            >
+              How can I use this System?
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseFour"
+          class="collapse"
+          aria-labelledby="headingFour"
+          data-parent="#accordionExample"
+        >
+          <div class="card-body">
+            <p>
+              To use this system, simply navigate to the predict page(lets get
+              started) and enter your information into the input fields. The
+              algorithm will analyze your risk factors and provide a prediction
+              of your likelihood of developing diabetes. It is important to note
+              that the results provided by this application are for
+              informational purposes only and should not be used as a substitute
+              for medical advice or diagnosis.
+            </p>
+            <p>
+              The value range of the input variables in a diabetes prediction
+              system can vary depending on the specific dataset and the way the
+              data is collected. However, typically the input variables have the
+              following value ranges:
+            </p>
+            <ul>
+              <li>Pregnancy: 0 to 17</li>
+              <li>Glucose: 0 to 200</li>
+              <li>Blood Pressure: 0 to 122</li>
+              <li>Skin Thickness: 0 to 99</li>
+              <li>Insulin: 0 to 846</li>
+              <li>BMI: 0 to 67</li>
+              <li>Diabetes Pedigree Function: 0.078 to 2.42</li>
+              <li>Age: 21 to 81</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-         How does it work?
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-       <p>The prediction algorithm used by this application is based on a dataset of individuals who have
-           been diagnosed with diabetes, as well as a set of healthy individuals. The algorithm analyzes several
-           risk factors, including age, body mass index (BMI), blood pressure, and glucose levels, to predict
-           the likelihood of diabetes.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          How accurate is the prediction?
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-       <p>The accuracy of the diabetes prediction algorithm depends on the quality of the data used to
-           train it, as well as the specific risk factors analyzed. In general, the accuracy of the
-           prediction increases as more relevant risk factors are included in the analysis. However,
-           it is important to note that no prediction algorithm is perfect, and there is always some
-           level of uncertainty associated with the results.</p>
-      </div>
-    </div>
-  </div>
-
-     <div class="card">
-    <div class="card-header" id="headingFour">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-          How can I use this System?
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-      <div class="card-body">
-        <p>To use this system, simply navigate to the predict page(lets get started) and enter your information
-            into the input fields. The algorithm will analyze your risk factors and provide a prediction
-            of your likelihood of developing diabetes. It is important to note that the results provided by
-            this application are for informational purposes only and should not be used as a substitute for
-            medical advice or diagnosis.</p>
-          <p>The value range of the input variables in a diabetes prediction system can vary depending on the specific dataset and the way the data is collected. However, typically the input variables have the following value ranges:
-
-Pregnancy: 0 to 17,
-Glucose: 0 to 200,
-Blood Pressure: 0 to 122,
-Skin Thickness: 0 to 99,
-Insulin: 0 to 846,
-BMI: 0 to 67,
-Diabetes Pedigree Function: 0.078 to 2.42,
-Age: 21 to 81.</p>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
+  </body>
 </html>

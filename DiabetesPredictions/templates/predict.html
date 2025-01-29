@@ -40,69 +40,169 @@
       type="image/png"
     />
     <title>Predict Page</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <style>
       body {
-        background-image: url("{% static 'DiabetesPrediction\images\img2.jpg'%}");
+        background-image: url("{% static 'DiabetesPrediction/images/img2.jpg'%}");
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 5px;
       }
+
       .main {
-        margin-top: -30px;
-        margin-left: 450px;
-        width: 550px;
-        background-color: #ffffff;
+        background-color: rgba(74, 102, 118, 0.9);
         border-radius: 10px;
-        align-items: center;
-        padding: 5%;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 600px;
       }
-      .main1 {
-        position: fixed;
-        margin-top: 1000px;
-        margin-left: 450px;
-        width: 550px;
-        background-color: #ffffff;
-        border-radius: 10px;
-        align-items: center;
-        padding: 5%;
-      }
+
       h1 {
-        color: #0086b3;
-        font-size: 30px;
+        color: #f2f5f6;
+        font-size: 24px;
         font-weight: bold;
+        text-align: center;
       }
+
       h3 {
         color: yellow;
-        font-size: 50px;
+        font-size: 28px;
         font-weight: bold;
-        margin-top: 70px;
-        margin-left: 600px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin: 1px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
       }
 
       input[type="submit"] {
-        background-color: #4dc3ff;
-        border: 2px;
+        background-color: #0f9adf;
+        border: none;
         color: white;
-        padding: 8px 16px;
+        padding: 10px 20px;
         cursor: pointer;
         margin-top: 15px;
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: #0f9adf;
+        border: none;
+        color: white;
+        padding: 10px 20px;
         cursor: pointer;
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      table {
+        width: 100%;
+      }
+
+      th,
+      td {
+        padding: 5px;
+        text-align: left;
+      }
+
+      /* Home Button Styles */
+      .home-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #0f9adf;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .home-button:hover {
+        background-color: #0d87c5;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 20px;
+        }
+
+        h3 {
+          font-size: 24px;
+        }
+
+        .main {
+          padding: 15px;
+        }
+
+        input[type="submit"],
+        button {
+          padding: 8px 16px;
+        }
+
+        .home-button {
+          top: 10px;
+          right: 10px;
+          padding: 8px 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 18px;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        .main {
+          padding: 10px;
+        }
+
+        input[type="submit"],
+        button {
+          padding: 6px 12px;
+        }
+
+        .home-button {
+          top: 5px;
+          right: 5px;
+          padding: 6px 12px;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- Home Button -->
+    <a href="/" class="home-button">Home</a>
+
     <h3>Predict Your Diabetes</h3>
-    <div align="center" class="main">
+    <div class="main">
       <h1>Please enter the following information:</h1>
       <form action="result">
         <table>
           <tr>
-            <td align="right">Pregnancies:</td>
-            <td align="left">
+            <td>Pregnancies:</td>
+            <td>
               <input
                 type="text"
                 required
                 name="n1"
-                placeholder="insert Pregnancies 0-17 "
+                placeholder="insert Pregnancies 0-17"
                 pattern="^(1[0-7]|[0-9])$"
                 min="0"
                 max="17"
@@ -110,8 +210,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">Glucose:</td>
-            <td align="left">
+            <td>Glucose:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -122,8 +222,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">BloodPressure:</td>
-            <td align="left">
+            <td>BloodPressure:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -134,8 +234,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">SkinThickness:</td>
-            <td align="left">
+            <td>SkinThickness:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -146,8 +246,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">Insulin:</td>
-            <td align="left">
+            <td>Insulin:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -158,8 +258,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">BMI:</td>
-            <td align="left">
+            <td>BMI:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -170,8 +270,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">DiabetesPedigreeFunction:</td>
-            <td align="left">
+            <td>DiabetesPedigreeFunction:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -182,8 +282,8 @@
             </td>
           </tr>
           <tr>
-            <td align="right">Age:</td>
-            <td align="left">
+            <td>Age:</td>
+            <td>
               <input
                 type="text"
                 required
@@ -195,12 +295,11 @@
             </td>
           </tr>
         </table>
-        <input type="submit" />
+        <input type="submit" value="Submit" />
       </form>
 
-      Result:<b>{{result2}}</b><br />
-      Message:<b>{{result3}}</b><br />
-      <br /><br />
+      <p>Result: <b>{{result2}}</b></p>
+      <p>Message: <b>{{result3}}</b></p>
 
       <button type="button" class="btn btn-info" onclick="showAccuracy()">
         Show Accuracy
@@ -225,6 +324,7 @@
             <img
               src="data:image/png;base64,{{ uri3 }}"
               alt="Accuracy Comparison Plot"
+              style="width: 100%"
             />
           </td>
         </tr>
@@ -232,13 +332,14 @@
 
       <table id="Comparison" style="display: none">
         <tr>
-          <th>Confusion Matrix of Logistic And Linear Regression :</th>
+          <th>Confusion Matrix of Logistic And Linear Regression:</th>
         </tr>
         <tr>
           <td>
             <img
               src="data:image/png;base64,{{ uri2 }}"
               alt="Logistic and Linear Regression Confusion Matrix"
+              style="width: 100%"
             />
           </td>
         </tr>
