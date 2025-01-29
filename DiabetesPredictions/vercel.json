@@ -4,7 +4,7 @@
       "src": "DiabetesPrediction/wsgi.py",
       "use": "@vercel/python",
       "config": {
-        "maxLambdaSize": "15mb",
+        "maxLambdaSize": "50mb",
         "runtime": "python3.9"
       }
     }
@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "elevate/wsgi.py"
+      "dest": "DiabetesPrediction/wsgi.py"
     }
   ]
 }
