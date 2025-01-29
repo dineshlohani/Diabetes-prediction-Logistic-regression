@@ -1,180 +1,277 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>predict page</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Diabetes Prediction System using advanced machine learning algorithms for accurate health predictions."
+    />
+    <meta
+      name="keywords"
+      content="Diabetes, Health Prediction, Machine Learning, AI, Healthcare"
+    />
+    <meta name="author" content="Dinesh Lohani" />
+    <meta property="og:title" content="Diabetes Prediction System" />
+    <meta
+      property="og:description"
+      content="Predict diabetes levels and get healthcare recommendations."
+    />
+    <meta
+      property="og:image"
+      content="{% static 'DiabetesPrediction/images/diabetes.png' %}"
+    />
+    <meta property="og:url" content="http://www.yourwebsite.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:title" content="Diabetes Prediction System" />
+    <meta
+      name="twitter:description"
+      content="Predict diabetes levels and get healthcare recommendations."
+    />
+    <meta
+      name="twitter:image"
+      content="{% static 'DiabetesPrediction/images/diabetes.png' %}"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="{% static 'DiabetesPrediction/images/diabetes.png' %}"
+      type="image/png"
+    />
+    <title>Predict Page</title>
     <style>
-         body{
-        background-image:url("{% static 'DiabetesPrediction\images\img2.jpg'%}");
+      body {
+        background-image: url("{% static 'DiabetesPrediction\images\img2.jpg'%}");
         background-repeat: no-repeat;
         background-size: cover;
-        }
-        .main{
-
-       margin-top:-30px;
-        margin-left:450px;
-        width:550px;
-        background-color:#ffffff;
+      }
+      .main {
+        margin-top: -30px;
+        margin-left: 450px;
+        width: 550px;
+        background-color: #ffffff;
         border-radius: 10px;
-        align-items:center;
-        padding:5%;
-        }
-.main1{
-        position:fixed;
-       margin-top:1000px;
-        margin-left:450px;
-        width:550px;
-        background-color:#ffffff;
+        align-items: center;
+        padding: 5%;
+      }
+      .main1 {
+        position: fixed;
+        margin-top: 1000px;
+        margin-left: 450px;
+        width: 550px;
+        background-color: #ffffff;
         border-radius: 10px;
-        align-items:center;
-        padding:5%;
-        }
-        h1{
-        color:#0086b3;
-        font-size:30px;
-        font-weight:bold;
-        }
-         h3{
-        color:yellow;
-        font-size:50px;
-        font-weight:bold;
-        margin-top:70px;
-        margin-left:600px;
-        }
+        align-items: center;
+        padding: 5%;
+      }
+      h1 {
+        color: #0086b3;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      h3 {
+        color: yellow;
+        font-size: 50px;
+        font-weight: bold;
+        margin-top: 70px;
+        margin-left: 600px;
+      }
 
-        input[type=submit]{
-        background-color:#4dc3ff;
-        border:2px;
-        color:white;
-        padding:8px 16px;
-        cursor:pointer;
-        margin-top:15px;
+      input[type="submit"] {
+        background-color: #4dc3ff;
+        border: 2px;
+        color: white;
+        padding: 8px 16px;
         cursor: pointer;
-        }
+        margin-top: 15px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <h3>Predict Your Diabetes</h3>
+    <div align="center" class="main">
+      <h1>Please enter the following information:</h1>
+      <form action="result">
+        <table>
+          <tr>
+            <td align="right">Pregnancies:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n1"
+                placeholder="insert Pregnancies 0-17 "
+                pattern="^(1[0-7]|[0-9])$"
+                min="0"
+                max="17"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">Glucose:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n2"
+                placeholder="insert Glucose 0-200"
+                pattern="^(?:[0-9]|[1-9][0-9]|1[0-9]{2}|200)$"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">BloodPressure:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n3"
+                placeholder="insert BloodPressure 0-122"
+                pattern="^([0-9]|[1-9][0-9]|1[01][0-9]|12[0-2])$"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">SkinThickness:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n4"
+                placeholder="insert SkinThickness 0-99"
+                pattern="^(?:[0-9]|[1-8][0-9]|9[0-9]|[0-9]+\.[0-9]+)$"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">Insulin:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n5"
+                placeholder="insert Insulin 0-846"
+                pattern="^(\d{1,2}|[1-7]\d{2}|8[0-3]\d|846)(\.\d{1,2})?$"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">BMI:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n6"
+                placeholder="insert BMI 0-67"
+                pattern="^(?:\d{1,2}(?:\.\d{1,2})?|6[0-7](?:\.\d{1,2})?|0?\.\d{1,2})$"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">DiabetesPedigreeFunction:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n7"
+                placeholder="insert DPF 0.078-2.42"
+                pattern="^(2\.42|2\.4[0-1]\d|2\.[0-3]\d{2}|1\.\d{1,3}|0\.(?=[1-9])[0-9]{1,3}|0\.0\d{1,3}|0\.00[1-9][0-9]?|0\.000[1-9])$"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="right">Age:</td>
+            <td align="left">
+              <input
+                type="text"
+                required
+                name="n8"
+                placeholder="insert Age 21-81"
+                pattern="(2[1-9]|[3-7][0-9]|8[0-1])"
+                maxlength="2"
+              />
+            </td>
+          </tr>
+        </table>
+        <input type="submit" />
+      </form>
 
-<h3>Predict Your Diabetes</h3>
-<div align = 'center' class="main">
-    <h1>Please enter the following information:</h1>
-   <form action="result">
-    <table>
+      Result:<b>{{result2}}</b><br />
+      Message:<b>{{result3}}</b><br />
+      <br /><br />
+
+      <button type="button" class="btn btn-info" onclick="showAccuracy()">
+        Show Accuracy
+      </button>
+      <button type="button" class="btn btn-info" onclick="correlation()">
+        Show Accuracy Comparison
+      </button>
+
+      <table id="accuracyTable" style="display: none">
         <tr>
-            <td align="right"> Pregnancies:</td>
-            <td align="left"><input type="text" required name="n1"
-                                    placeholder="insert Pregnancies 0-17 "  pattern="^(1[0-7]|[0-9])$"  min="0" max="17"></td>
+          <th>Accuracy:</th>
+          <td><b>{{accuracy}}%</b></td>
+        </tr>
+      </table>
+
+      <table id="correlationTable" style="display: none">
+        <tr>
+          <th>Accuracy Graph:</th>
         </tr>
         <tr>
-            <td align="right"> Glucose:</td>
-            <td align="left"><input type="text" required name="n2"
-                                    placeholder="insert Glucose 0-200" pattern="^(?:[0-9]|[1-9][0-9]|1[0-9]{2}|200)$"></td>
+          <td>
+            <img
+              src="data:image/png;base64,{{ uri3 }}"
+              alt="Accuracy Comparison Plot"
+            />
+          </td>
+        </tr>
+      </table>
+
+      <table id="Comparison" style="display: none">
+        <tr>
+          <th>Confusion Matrix of Logistic And Linear Regression :</th>
         </tr>
         <tr>
-            <td align="right"> BloodPressure:</td>
-            <td align="left"><input type="text" required name="n3"
-                                    placeholder="insert BloodPressure 0-122" pattern="^([0-9]|[1-9][0-9]|1[01][0-9]|12[0-2])$"></td>
+          <td>
+            <img
+              src="data:image/png;base64,{{ uri2 }}"
+              alt="Logistic and Linear Regression Confusion Matrix"
+            />
+          </td>
         </tr>
-        <tr>
-            <td align="right"> SkinThickness:</td>
-            <td align="left"><input type="text" required name="n4"
-                                    placeholder="insert SkinThickness 0-99" pattern="^(?:[0-9]|[1-8][0-9]|9[0-9]|[0-9]+\.[0-9]+)$"></td>
-        </tr>
-        <tr>
-            <td align="right"> Insulin:</td>
-            <td align="left"><input type="text" required name="n5"
-                                    placeholder="insert Insulin 0-846"
-                                    pattern="^(\d{1,2}|[1-7]\d{2}|8[0-3]\d|846)(\.\d{1,2})?$"></td>
-        </tr>
-        <tr>
-            <td align="right"> BMI:</td>
-            <td align="left"><input type="text" required name="n6" placeholder="insert BMI 0-67"
-                                    pattern="^(?:\d{1,2}(?:\.\d{1,2})?|6[0-7](?:\.\d{1,2})?|0?\.\d{1,2})$"></td>
-        </tr>
-        <tr>
-            <td align="right"> DiabetesPedigreeFunction:</td>
-            <td align="left"><input type="text" required name="n7" placeholder="insert DPF 0.078-2.42"
-                                  pattern="^(2\.42|2\.4[0-1]\d|2\.[0-3]\d{2}|1\.\d{1,3}|0\.(?=[1-9])[0-9]{1,3}|0\.0\d{1,3}|0\.00[1-9][0-9]?|0\.000[1-9])$"></td>
-        </tr>
-        <tr>
-            <td align="right"> Age:</td>
-            <td align="left"><input type="text" required name="n8" placeholder="insert Age 21-81"
-                                    pattern="(2[1-9]|[3-7][0-9]|8[0-1])" maxlength="2"></td>
-        </tr>
-    </table>
-    <input type="submit">
-</form>
+      </table>
 
-    Result:<b>{{result2}}</b><br>
-    Message:<b>{{result3}}</b><br>
-    <br><br>
+      <script>
+        function showAccuracy() {
+          const table = document.getElementById("accuracyTable");
+          if (table.style.display === "none") {
+            table.style.display = "table";
+          } else {
+            table.style.display = "none";
+          }
+        }
 
-<button type="button" class="btn btn-info" onclick="showAccuracy()">
-    Show Accuracy
-</button>
-    <button type="button" class="btn btn-info" onclick="correlation()">
-    Show Accuracy Comparison
-</button>
+        function correlation() {
+          const table = document.getElementById("correlationTable");
+          if (table.style.display === "none") {
+            table.style.display = "table";
+          } else {
+            table.style.display = "none";
+          }
+        }
 
-
-<table id="accuracyTable" style="display: none;">
-    <tr>
-        <th>Accuracy:</th>
-        <td><b>{{accuracy}}%</b></td>
-    </tr>
-</table>
-
-
-<table id="correlationTable" style="display: none;">
-    <tr> <th>Accuracy Graph:</th></tr>
-    <tr>
-        <td>  <img src="data:image/png;base64,{{ uri3 }}" alt="Accuracy Comparison Plot"></td>
-    </tr>
-</table>
-
-
-
-    <table id="Comparison" style="display: none;">
-    <tr> <th>Confusion Matrix of Logistic And Linear Regression :</th></tr>
-<tr>
-  <td>  <img src="data:image/png;base64,{{ uri2 }}" alt="Logistic and Linear Regression Confusion Matrix"></td>
-</tr>
-</table>
-
-<script>
-function showAccuracy() {
-    const table = document.getElementById("accuracyTable");
-    if (table.style.display === "none") {
-        table.style.display = "table";
-    } else {
-        table.style.display = "none";
-    }
-}
-
-function correlation() {
-    const table = document.getElementById("correlationTable");
-    if (table.style.display === "none") {
-        table.style.display = "table";
-    } else {
-        table.style.display = "none";
-    }
-}
-
-
-function graph() {
-    const table = document.getElementById("Comparison");
-    if (table.style.display === "none") {
-        table.style.display = "table";
-    } else {
-        table.style.display = "none";
-    }
-}
-</script>
-
-</div>
-
-
-
-</body>
+        function graph() {
+          const table = document.getElementById("Comparison");
+          if (table.style.display === "none") {
+            table.style.display = "table";
+          } else {
+            table.style.display = "none";
+          }
+        }
+      </script>
+    </div>
+  </body>
 </html>

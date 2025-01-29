@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg') 
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from .logistic_regression import LogisticRegression
@@ -14,12 +16,15 @@ from django.http import HttpResponse
 from io import BytesIO
 import base64
 import urllib
-
+import os
+from django.conf import settings
 
 def home(request):
     return render(request, 'home.html')
+
 def index(request):
     return render(request, 'index.html')
+
 def predict(request):
     return render(request, 'predict.html')
 
@@ -27,7 +32,18 @@ def name(request):
     return render(request, 'predict.html')
 
 def result(request):
-    data = pd.read_csv(r'C:\Users\dinul\diabetes.csv')
+    # Correct file path
+    file_path = os.path.join(settings.BASE_DIR, 'static', 'diabetes.csv')
+    
+    # Ensure the file exists
+    if os.path.exists(file_path):
+        print("File found")
+    else:
+        print("File not found")
+    
+    # Load the dataset
+    data = pd.read_csv(file_path)
+    
     X = data.drop("Outcome", axis=1)
     y = data['Outcome']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
@@ -36,7 +52,7 @@ def result(request):
     model.fit(X_train, y_train)
 
     model1 = LinearRegression()
-    model1.fit(X_train,y_train)
+    model1.fit(X_train, y_train)
 
     val1 = float(request.GET['n1'])
     val2 = float(request.GET['n2'])
@@ -49,14 +65,9 @@ def result(request):
     pred = model.predict([[val1, val2, val3, val4, val5, val6, val7, val8]])
     pred1 = model1.predict([[val1, val2, val3, val4, val5, val6, val7, val8]])
 
-    # Map the predicted probability onto a scale from 0 to 100
     print(pred)
     print(pred1)
 
-
-
-    #diabetes_level = np.around(pred * 100, 2)
-    #print(diabetes_level)
     scaler = StandardScaler()
     X_train_std = scaler.fit_transform(X_train)
     X_test_std = scaler.transform(X_test)
@@ -66,16 +77,16 @@ def result(request):
     y_pred = logReg.predict(X_test_std)
 
     logReg1 = LinearRegression(lr=0.1, num_iter=10000)
-    logReg1.fit(X_train_std,y_train)
+    logReg1.fit(X_train_std, y_train)
     y_pred1 = logReg1.predict(X_test_std)
 
     logistic_pred = [1 if p >= 0.5 else 0 for p in y_pred]
     linear_pred = [1 if p >= 0.5 else 0 for p in y_pred1]
 
-    logistic_accuracy = accuracy_score(y_test,logistic_pred )
+    logistic_accuracy = accuracy_score(y_test, logistic_pred)
     print(f"Logistic Accuracy: {logistic_accuracy}")
 
-    linear_accuracy = accuracy_score(y_test,linear_pred )
+    linear_accuracy = accuracy_score(y_test, linear_pred)
     print(f"Linear Accuracy: {linear_accuracy}")
 
     if logistic_accuracy > linear_accuracy:
@@ -85,7 +96,7 @@ def result(request):
     else:
         accuracy1 = logistic_accuracy
     print("Accuracy:", accuracy1 * 100)
-     #Compute binary predictions using a threshold
+      #Compute binary predictions using a threshold
     # logistic_pred_binary = [1 if p >= 0.5 else 0 for p in y_pred]
     # linear_pred_binary = [1 if p >= 0.5 else 0 for p in y_pred1]
     #
@@ -110,12 +121,15 @@ def result(request):
     # uri2 = urllib.parse.quote(string)
 
     # Vary threshold and calculate accuracy for logistic regression
+
+    # Vary threshold and calculate accuracy for logistic regression
     thresholds = np.arange(0, 1.05, 0.05)
     logistic_accuracies = []
     for threshold in thresholds:
         binary_pred = [1 if p >= threshold else 0 for p in y_pred]
         accuracy = accuracy_score(y_test, binary_pred)
         logistic_accuracies.append(accuracy)
+
     # Vary threshold and calculate accuracy for linear regression
     linear_accuracies = []
     for threshold in thresholds:
@@ -139,26 +153,24 @@ def result(request):
     string = base64.b64encode(buf.read())
     uri3 = urllib.parse.quote(string)
 
-
-
-# Interpret the level of diabetes severity based on the scale
+    # Interpret the level of diabetes severity based on the scale
     if np.any(pred >= 0.8):
         result1 = "Severe Diabetes"
         Message = "Visit Hospital and Consult Doctor ASAP."
-
-
     elif np.any(pred >= 0.5):
         result1 = "Moderate Diabetes"
         Message = "Visit Hospital and Consult"
-
     elif np.any(pred >= 0.2):
-
         result1 = "Mild Diabetes"
         Message = "Manage diabetes with proper care."
     else:
         result1 = "Low or No Risk of Diabetes"
         Message = "Stay Healthy"
 
-    return render(request, 'predict.html', {"result2":result1, "diabetes_level": pred, 'result3':Message,
-  'accuracy':accuracy1*100, 'uri3':uri3, })
-
+    return render(request, 'predict.html', {
+        "result2": result1, 
+        "diabetes_level": pred, 
+        'result3': Message,
+        'accuracy': accuracy1 * 100, 
+        'uri3': uri3,
+    })
