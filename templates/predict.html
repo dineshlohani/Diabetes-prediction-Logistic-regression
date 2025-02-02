@@ -188,7 +188,7 @@
   </head>
   <body>
     <!-- Home Button -->
-    <a href="/" class="home-button">Home</a>
+    <a href="/" class="home-button" onclick="clearStorage()">Home</a>
 
     <h3>Predict Your Diabetes</h3>
     <div class="main">
@@ -371,6 +371,17 @@
           } else {
             table.style.display = "none";
           }
+        }
+
+        function clearStorage() {
+          // Clear localStorage
+          localStorage.clear();
+
+          // Clear sessionStorage
+          sessionStorage.clear();
+
+          // Redirect to the home page
+          window.location.href = "/";
         }
       </script>
     </div>
