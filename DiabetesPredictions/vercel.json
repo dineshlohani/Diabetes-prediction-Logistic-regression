@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "DiabetesPredictions/DiabetesPredictions/wsgi.py",
+      "src": "DialectesPredictions/DialectesPrediction/wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "250mb",
@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "DiabetesPrediction/wsgi.py"
+      "dest": "DialectesPredictions/DialectesPrediction/wsgi.py"
     }
   ]
 }
